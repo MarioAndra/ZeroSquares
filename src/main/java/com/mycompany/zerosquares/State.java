@@ -13,16 +13,15 @@ import java.util.List;
  * @author Mario
  *///
 public class State {
-    
     int size;
+    State parent;
     Squares[][] grid;
     public static List<Squares> goals=new ArrayList<Squares>(); 
-    
-    public State(int size){
+        public State(int size){
         this.size=size;
         grid=new Squares[size][size];
-        //goals = new ArrayList<>();
         init();
+       this.parent=null;
         }
     
     public void init(){
@@ -37,7 +36,6 @@ public class State {
         grid[x][y]=new Squares(x, y, color, type,isMoving);
         if(type.equals("g")){
             goals.add(grid[x][y]);
-            //System.out.println("Added to goals: " + grid[x][y]);
         }
     }
     
@@ -47,20 +45,14 @@ public class State {
             x+=moveX;
             y+=moveY;            
             if(x<0||x>=size||y<0||y>=size||grid[x][y].type=="#"){
-                System.out.println("Cant move");
                 return false;
             }
              if (grid[x][y].type.equals("g") ) {
-          
             return true;              
         }
             if(grid[x][y].color!=' '){
-                System.out.println("cant move Two color");
                 return false;
             }
-            
-            
-            System.out.println("move");
             return true;      
         }
     }
@@ -85,7 +77,6 @@ public State move(int moveX, int moveY) {
                     y += moveY;  
                     Squares moving = grid[i][j];
                     if (grid[x][y].type.equals("g") && moving.color==grid[x][y].color) {
-                        System.out.println("equales");
                         newState.setSquare(x, y,' ', ".", false);
                           break;
                     }
@@ -99,37 +90,34 @@ public State move(int moveX, int moveY) {
     }
     return newState;
 }
-
-
-
   public boolean is_final(State state) { 
     for (int i = 0; i < state.size; i++) {
         for (int j = 0; j < state.size; j++) {
             if (state.grid[i][j].isMoving) {
                 Squares movingSquare = state.grid[i][j];
-                System.out.println("moving square x:"+movingSquare.x);
-                System.out.println("moving square y:"+movingSquare.y);
-               // System.out.println("list of object :"+state.goals);                
                for (int k = 0; k < goals.size(); k++){ 
                      Squares goal = goals.get(k);
                         if (movingSquare.x == goal.x&&movingSquare.y == goal.y&&movingSquare.color == goal.color)   {
-        
-                                System.out.println("true");
-                                //movingSquare.type = ".";
                                 movingSquare.isMoving = false;
-                                movingSquare.color = ' ';                               
-                                //goals.remove(k); 
-
+                                movingSquare.color = ' ';
                                 return true;
                                             }
                                         }
                                     }
                                 }
                             }
-    System.out.println("false");
     return false; 
 }
-  
+  public boolean is_goal(State state){
+            for(int i=0;i<state.size;i++){
+                for(int j=0;j<state.size;j++){
+                    if(state.grid[i][j].isMoving){
+                        return false;
+                    }
+                }
+            }
+            return true;
+  }
   
 public boolean equalsState(State s1,State s2){
         if(s1.size!=s2.size){
@@ -138,7 +126,7 @@ public boolean equalsState(State s1,State s2){
         for(int i=0;i<s1.size;i++){
             for(int j=0;j<s1.size;j++){
                 if(s1.grid[i][j].type!=s2.grid[i][j].type){
-                    System.out.println("include for");
+                   // System.out.println("include for");
                     return false;
                 }
             }
@@ -160,18 +148,17 @@ public List<State> nextState(State s) {
             int moveY = move[1];           
             State newState = s.move(moveX, moveY);            
             if (!equalsState(s,newState)) {
-                System.out.println("include nextState");
+                newState.parent = s;
                 possibleStates.add(newState);
             }
         }
-        for (int i = 0; i < possibleStates.size(); i++) {
-        State s1 = possibleStates.get(i);
-        System.out.println("index of state :" + i);
-        s1.print(s1);
-        System.out.println("///////////");
-    }
+        for(int i=0;i<possibleStates.size();i++){
+            State s1=possibleStates.get(i);
+            s1.print(s1);
+            System.out.println("/////////////");
+        }
         return possibleStates;
-    }
+}
 
 
     

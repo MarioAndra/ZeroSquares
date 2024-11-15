@@ -12,11 +12,12 @@ import java.util.Scanner;
  */
 public class Controle {
     State s;
+    BFS B=new BFS();
+    DFS D= new DFS();
       
     Scanner scanner = new Scanner(System.in);
     public static List<State> states = new ArrayList<>();
     public Controle(int size) {
-     //   public static List<State> state=new ArrayList<Squares>();
         s = new State(size);
         
        
@@ -26,7 +27,7 @@ public class Controle {
 
     public void start() {
         System.out.println("Select level");
-            System.out.println("1 - Easy");
+        System.out.println("1 - Easy");
         System.out.println("2 - Medium");
         System.out.println("3 - Hard");
         
@@ -54,19 +55,41 @@ public class Controle {
                 System.out.println("Invalid ");
                  break;
         }
+        System.out.println("-------------------");
+        System.out.println("Select how to play");
+        System.out.println("1-user");
+        System.out.println("2-bfs");
+        System.out.println("3-dfs");
+        int select =scanner.nextInt();
+        switch (select){
+            case 1 :
+                playGame();
+                break;
+            case 2:
+                s.print(s);
+                System.out.println("///////////");
+                B.search(s);
+                break;
+            case 3:
+                s.print(s);
+                System.out.println("///////////");
+                D.search(s);
+                break;
+
+        }
 
         
-        playGame();
+        //playGame();
     }
 
-    private void setupEasyLevel() {
+    public void setupEasyLevel() {
         
        
         s.setSquare(0, 0, ' ', "#", false);
         s.setSquare(0, 1, 'R', "g", false);
         s.setSquare(0, 2, ' ', "#", false);
         s.setSquare(1, 0, ' ', "#", false);
-        s.setSquare(1, 1, ' ', ".", false);
+        s.setSquare(1, 1, ' ', "#", false);
         s.setSquare(1, 2, ' ', "#", false);
         s.setSquare(2,0, ' ', "#", false);
         s.setSquare(2,1, 'R', "R", true);
@@ -74,9 +97,8 @@ public class Controle {
         states.add(s);
     }
 
-    private void setupMediumLevel(int size) {
-        s = new State(size); 
-        
+    public void setupMediumLevel(int size) {
+        s = new State(size);
         s.setSquare(0, 0, ' ', "#", false);
         s.setSquare(0, 1, ' ', "#", false);
         s.setSquare(0, 2, ' ', "#", false);
@@ -99,10 +121,9 @@ public class Controle {
         s.setSquare(1,1, 'B', "B", true);
         s.setSquare(3,2, 'B', "g", false);
         states.add(s);
-        
     }
 
-    private void setupHardLevel(int size) {
+    public void setupHardLevel(int size) {
          s = new State(size); 
         s.setSquare(0, 0, ' ', "#", false);
         s.setSquare(0, 1, ' ', "#", false);
@@ -145,6 +166,7 @@ public class Controle {
         
         s.setSquare(1,5, 'B', "g", false);
         states.add(s);
+        //B.search(s);
     }
 
     private void playGame() {
@@ -183,13 +205,6 @@ public class Controle {
                 case "new":
                     s.nextState(s);
                     break;
-                    
-                
-                default:
-                    System.out.println("Invalid action");
-                    
-                    continue;
-                   
             }
              //states.add(s);
         }

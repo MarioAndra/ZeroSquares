@@ -89,7 +89,7 @@ public class Controle {
         s.setSquare(0, 1, 'R', "g", false);
         s.setSquare(0, 2, ' ', "#", false);
         s.setSquare(1, 0, ' ', "#", false);
-        s.setSquare(1, 1, ' ', "#", false);
+        s.setSquare(1, 1, ' ', ".", false);
         s.setSquare(1, 2, ' ', "#", false);
         s.setSquare(2,0, ' ', "#", false);
         s.setSquare(2,1, 'R', "R", true);

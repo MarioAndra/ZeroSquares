@@ -118,8 +118,8 @@ public State move(int moveX, int moveY) {
             }
             return true;
   }
-  
-public boolean equalsState(State s1,State s2){
+
+public static boolean equalsState(State s1,State s2){
         if(s1.size!=s2.size){
             return false;
         }
@@ -133,7 +133,7 @@ public boolean equalsState(State s1,State s2){
         }
         return true;
     }
-    
+
     
 public List<State> nextState(State s) {
         List<State> possibleStates = new ArrayList<>();
@@ -152,11 +152,7 @@ public List<State> nextState(State s) {
                 possibleStates.add(newState);
             }
         }
-        for(int i=0;i<possibleStates.size();i++){
-            State s1=possibleStates.get(i);
-            s1.print(s1);
-            System.out.println("/////////////");
-        }
+
         return possibleStates;
 }
 

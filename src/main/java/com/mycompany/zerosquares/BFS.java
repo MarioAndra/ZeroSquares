@@ -7,9 +7,10 @@ public class BFS {
         Queue<State> queue = new LinkedList<>();
         List<State> visited = new ArrayList<>();
         queue.add(s);
-        visited.add(s);
         while (!queue.isEmpty()) {
+
             State currentState = queue.poll();
+            visited.add(currentState);
             if (currentState.is_goal(currentState)) {
                 System.out.println("goal");
                 System.out.println("Visited size: " + visited.size());
@@ -34,13 +35,12 @@ public class BFS {
             for (State nextState : nextStates) {
                 boolean isUnique = true;
                 for (State visitedState : visited) {
-                    if (visitedState.equalsState(visitedState, nextState)) {
+                    if (State.equalsState(visitedState, nextState)) {
                         isUnique = false;
                         break;
                     }
                 }
                 if (isUnique) {
-                    visited.add(nextState);
                     queue.add(nextState);
                 }
             }

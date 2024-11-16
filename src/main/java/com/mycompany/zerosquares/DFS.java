@@ -33,7 +33,7 @@ public class DFS {
             for (State nextState : nextStates) {
                 boolean isUnique = true;
                 for (State visitedState : visited) {
-                    if (visitedState.equalsState(visitedState, nextState)) {
+                    if (State.equalsState(visitedState, nextState)) {
                         isUnique = false;
                         break;
                     }

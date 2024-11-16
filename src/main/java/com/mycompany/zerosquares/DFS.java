@@ -7,9 +7,21 @@ public class DFS {
         Stack<State> stack = new Stack<>();
         List<State> visited = new ArrayList<>();
         stack.push(s);
-        visited.add(s);
+        //visited.add(s);
         while (!stack.isEmpty()) {
             State currentState = stack.pop();
+
+            boolean exist=false;
+            for(State v: visited){
+                if(State.equalsState(v,currentState)){
+                    exist=true;
+                    break;
+                }
+            }
+            if(exist){
+                continue;
+            }
+            visited.add(currentState);
             if (currentState.is_goal(currentState)) {
                 System.out.println("goal");
                 System.out.println("Visited size: " + visited.size());
@@ -39,7 +51,7 @@ public class DFS {
                     }
                 }
                 if (isUnique) {
-                    visited.add(nextState);
+                    //visited.add(nextState);
                     stack.push(nextState);
                 }
             }

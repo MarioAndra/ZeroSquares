@@ -10,6 +10,16 @@ public class BFS {
         while (!queue.isEmpty()) {
 
             State currentState = queue.poll();
+            boolean exist=false;
+            for(State v: visited){
+                if(State.equalsState(v,currentState)){
+                    exist=true;
+                    break;
+                }
+            }
+            if(exist){
+                continue;
+            }
             visited.add(currentState);
             if (currentState.is_goal(currentState)) {
                 System.out.println("goal");

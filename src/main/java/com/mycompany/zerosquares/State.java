@@ -125,7 +125,7 @@ public static boolean equalsState(State s1,State s2){
         }
         for(int i=0;i<s1.size;i++){
             for(int j=0;j<s1.size;j++){
-                if(s1.grid[i][j].type!=s2.grid[i][j].type){
+                if(s1.grid[i][j].isMoving!=s2.grid[i][j].isMoving){
                    // System.out.println("include for");
                     return false;
                 }
@@ -138,10 +138,10 @@ public static boolean equalsState(State s1,State s2){
 public List<State> nextState(State s) {
         List<State> possibleStates = new ArrayList<>();
         int[][] moves = {
-            {1, 0},   
-            {-1,0},
+            {0, 1},
             {0,-1},
-            {0, 1}                  
+            {-1,0},
+            {1, 0}
         };        
         for (int[] move : moves) {
             int moveX = move[0];
@@ -152,6 +152,11 @@ public List<State> nextState(State s) {
                 possibleStates.add(newState);
             }
         }
+        /*for(int i=0;i<possibleStates.size();i++){
+            State s1=possibleStates.get(i);
+            s1.print(s1);
+            System.out.println(" ");
+        }*/
 
         return possibleStates;
 }

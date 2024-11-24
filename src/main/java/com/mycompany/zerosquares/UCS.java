@@ -40,7 +40,7 @@ public class UCS {
                     }
                 }
                 if (isUnique) {
-                    int cost=nextState.cost+ currentState.cost;
+                    nextState.cost+=currentState.cost;
                     queue.add(nextState);
 
                 }

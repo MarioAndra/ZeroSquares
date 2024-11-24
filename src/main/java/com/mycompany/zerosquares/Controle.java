@@ -14,6 +14,7 @@ public class Controle {
     State s;
     BFS B=new BFS();
     DFS D= new DFS();
+    UCS U=new UCS();
       
     Scanner scanner = new Scanner(System.in);
     public static List<State> states = new ArrayList<>();
@@ -60,6 +61,7 @@ public class Controle {
         System.out.println("1-user");
         System.out.println("2-bfs");
         System.out.println("3-dfs");
+        System.out.println("4-UCS");
         int select =scanner.nextInt();
         switch (select){
             case 1 :
@@ -75,6 +77,12 @@ public class Controle {
                 System.out.println("///////////");
                 D.search(s);
                 break;
+            case 4:
+                s.print(s);
+                System.out.println("//////////");
+                U.search(s);
+                break;
+
 
         }
 

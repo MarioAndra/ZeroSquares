@@ -16,12 +16,14 @@ public class State {
     int size;
     State parent;
     Squares[][] grid;
+    int cost;
     public static List<Squares> goals=new ArrayList<Squares>(); 
         public State(int size){
         this.size=size;
         grid=new Squares[size][size];
         init();
        this.parent=null;
+       this.cost=0;
         }
     
     public void init(){
@@ -149,6 +151,7 @@ public List<State> nextState(State s) {
             State newState = s.move(moveX, moveY);            
             if (!equalsState(s,newState)) {
                 newState.parent = s;
+                newState.cost=1;
                 possibleStates.add(newState);
             }
         }

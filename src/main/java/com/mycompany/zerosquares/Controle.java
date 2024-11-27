@@ -84,6 +84,13 @@ public class Controle {
                 System.out.println("//////////");
                 U.search(s);
                 break;
+            case 5:
+                s.print(s);
+                System.out.println("//////////");
+                R_DFS.search(s);
+                break;
+
+
         }
 
         

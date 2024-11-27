@@ -33,6 +33,9 @@ public class State {
             }
         }
     }
+
+
+
     
     public void setSquare(int x,int y,char color,String type,boolean isMoving){
         grid[x][y]=new Squares(x, y, color, type,isMoving);
@@ -155,12 +158,6 @@ public List<State> nextState(State s) {
                 possibleStates.add(newState);
             }
         }
-        /*for(int i=0;i<possibleStates.size();i++){
-            State s1=possibleStates.get(i);
-            s1.print(s1);
-            System.out.println(" ");
-        }*/
-
         return possibleStates;
 }
 

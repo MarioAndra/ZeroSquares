@@ -15,6 +15,7 @@ public class Controle {
     BFS B=new BFS();
     DFS D= new DFS();
     UCS U=new UCS();
+    Recursive_DFS R_DFS=new Recursive_DFS();
       
     Scanner scanner = new Scanner(System.in);
     public static List<State> states = new ArrayList<>();
@@ -62,6 +63,7 @@ public class Controle {
         System.out.println("2-bfs");
         System.out.println("3-dfs");
         System.out.println("4-UCS");
+        System.out.println("5-R_DFS");
         int select =scanner.nextInt();
         switch (select){
             case 1 :
@@ -82,8 +84,6 @@ public class Controle {
                 System.out.println("//////////");
                 U.search(s);
                 break;
-
-
         }
 
         

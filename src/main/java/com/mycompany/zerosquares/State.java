@@ -8,22 +8,20 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Mario
- *///
 public class State {
     int size;
     State parent;
     Squares[][] grid;
     int cost;
+    int heuristic;
     public static List<Squares> goals=new ArrayList<Squares>(); 
-        public State(int size){
+        public State(int size,int heuristic){
         this.size=size;
         grid=new Squares[size][size];
         init();
        this.parent=null;
        this.cost=0;
+       this.heuristic=heuristic;
         }
     
     public void init(){
@@ -160,6 +158,26 @@ public List<State> nextState(State s) {
         }
         return possibleStates;
 }
+
+    public static int calculateHeuristic(State s) {
+        int heuristic = 0;
+        for (int i = 0; i < s.size; i++) {
+            for (int j = 0; j < s.size; j++) {
+                Squares square = s.grid[i][j];
+                if (square.isMoving) {
+                    int minDistance = Integer.MAX_VALUE;
+                    for (Squares goal : goals) {
+                        if (square.color == goal.color) {
+                            int distance = Math.abs(square.x - goal.x) + Math.abs(square.y - goal.y);
+                            minDistance = Math.min(minDistance, distance);
+                        }
+                    }
+                    heuristic += minDistance;
+                }
+            }
+        }
+        return heuristic;
+    }
 
 
     

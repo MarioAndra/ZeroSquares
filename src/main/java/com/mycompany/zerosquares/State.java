@@ -141,8 +141,8 @@ public static boolean equalsState(State s1,State s2){
 public List<State> nextState(State s) {
         List<State> possibleStates = new ArrayList<>();
         int[][] moves = {
-            {0, 1},
-            {0,-1},
+            {0, -1},
+            {0,+1},
             {-1,0},
             {1, 0}
         };        
@@ -165,18 +165,19 @@ public List<State> nextState(State s) {
             for (int j = 0; j < s.size; j++) {
                 Squares square = s.grid[i][j];
                 if (square.isMoving) {
-                    int minDistance = Integer.MAX_VALUE;
+                    int minDistance =0;
                     for (Squares goal : goals) {
                         if (square.color == goal.color) {
                             int distance = Math.abs(square.x - goal.x) + Math.abs(square.y - goal.y);
-                            System.out.println("d:"+distance);
-                            minDistance = Math.min(minDistance, distance);
+                            //System.out.println("d:"+distance);
+                            minDistance = distance;
                         }
                     }
                     heuristic += minDistance;
                 }
             }
         }
+        //System.out.println("heuristic:"+heuristic);
         return heuristic;
     }
 

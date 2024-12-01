@@ -15,6 +15,7 @@ public class Controle {
     BFS B=new BFS();
     DFS D= new DFS();
     UCS U=new UCS();
+    A_Star A=new A_Star();
     Recursive_DFS R_DFS=new Recursive_DFS();
       
     Scanner scanner = new Scanner(System.in);
@@ -64,6 +65,7 @@ public class Controle {
         System.out.println("3-dfs");
         System.out.println("4-UCS");
         System.out.println("5-R_DFS");
+        System.out.println("6-A*");
         int select =scanner.nextInt();
         switch (select){
             case 1 :
@@ -89,6 +91,10 @@ public class Controle {
                 System.out.println("//////////");
                 R_DFS.search(s);
                 break;
+            case 6:
+                s.print(s);
+                System.out.println("//////////");
+                A.search(s);
 
 
         }
@@ -136,6 +142,7 @@ public class Controle {
         s.setSquare(1,1, 'B', "B", true);
         s.setSquare(3,2, 'B', "g", false);
         states.add(s);
+        State.calculateHeuristic(s);
     }
 
     public void setupHardLevel(int size) {

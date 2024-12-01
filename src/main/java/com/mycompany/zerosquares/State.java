@@ -15,13 +15,13 @@ public class State {
     int cost;
     int heuristic;
     public static List<Squares> goals=new ArrayList<Squares>(); 
-        public State(int size,int heuristic){
+        public State(int size){
         this.size=size;
         grid=new Squares[size][size];
         init();
        this.parent=null;
        this.cost=0;
-       this.heuristic=heuristic;
+       //this.heuristic=heuristic;
         }
     
     public void init(){
@@ -169,6 +169,7 @@ public List<State> nextState(State s) {
                     for (Squares goal : goals) {
                         if (square.color == goal.color) {
                             int distance = Math.abs(square.x - goal.x) + Math.abs(square.y - goal.y);
+                            System.out.println("d:"+distance);
                             minDistance = Math.min(minDistance, distance);
                         }
                     }

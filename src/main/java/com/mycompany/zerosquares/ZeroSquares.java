@@ -10,7 +10,5 @@ public class ZeroSquares {
         Scanner scanner = new Scanner(System.in);
         Controle game = new Controle(3);
         game.start();
-
-
     }
 }

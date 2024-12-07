@@ -1,0 +1,78 @@
+level 20
+BFS
+visited size: 542
+path size: 12
+Execution Time: 162 ms
+memoryUsed: 16737376 byte
+---------------------------
+DFS
+visited size: 99
+path size: 41
+Execution Time: 19 ms
+memoryUsed: 6251640 byte
+---------------------------
+UCS
+visited size: 576
+path size: 16
+Execution Time: 165 ms
+memoryUsed: 17785976 byte
+---------------------------
+Recursive_DFS
+Visited size: 50
+Path size: 38
+Execution Time: 5400 ms
+memoryUsed: 4699696 bytes
+---------------------------
+A_Star
+visited size: 353
+path size: 15
+Execution Time: 107 ms
+memoryUsed: 21476912 byte
+---------------------------
+Simple_Hill_Climbing
+visited size: 2
+path size: 0
+Execution Time: 10 ms
+memoryUsed: 4154552 byte
+---------------------------
+Steepest_Hill_Climbing
+visited size: 2
+path size: 0
+Execution Time: 10 ms
+memoryUsed: 4154480 byte
+---------------------------
+level 30
+DFS
+visited size: 398
+path size: 196
+Execution Time: 194 ms
+memoryUsed: 13393408 byte
+---------------------------
+BFS
+visited size: 420
+path size: 200
+Execution Time: 200 ms
+memoryUsed: 15393408 byte
+---------------------------
+Recursive_DFS
+Visited size: 1738
+Path size: 395
+Execution Time: 92800 ms
+memoryUsed: 32732672 bytes
+---------------------------
+Simple_Hill_Climbing
+Execution Time: 7 ms
+Path size:0
+memoryUsed: 4155464 byte
+---------------------------
+Steepest_Hill_Climbing
+Execution Time: 20 ms
+Path size:0
+memoryUsed: 415500 byte
+---------------------------
+A_Star
+visited size: 800
+path size: 89
+Execution Time: 107 ms
+memoryUsed: 214912 byte
+---------------------------

@@ -1,17 +1,19 @@
 package com.mycompany.zerosquares;
-
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class UCS {
     public List<State>  search(State s){
-        PriorityQueue<State> queue = new PriorityQueue<>(new Comparator<State>(){
+        PriorityQueue<State> queue = new PriorityQueue<>(200000,new Comparator<State>(){
             @Override
             public int compare(State s1, State s2) {
                 return Integer.compare(s1.cost, s2.cost);
             }
         });
-        List<State> visited = new ArrayList<>();
+        List<State> visited = new ArrayList<>(200000);
         queue.add(s);
+        long startTime = System.currentTimeMillis();
         while(!queue.isEmpty()){
             State currentState = queue.poll();
             boolean exist=false;
@@ -27,6 +29,9 @@ public class UCS {
             visited.add(currentState);
            // visited.add(currentState);
             if(currentState.is_goal(currentState)){
+                long endTime = System.currentTimeMillis();
+                long executionTime = endTime - startTime;
+                int memoryUsed = (int) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
                 System.out.println("visited list");
                 for(State v: visited){
                     v.print(v);
@@ -55,6 +60,16 @@ public class UCS {
                 System.out.println("Path Size :"+path.size());
                 System.out.println("COST : "+cost);
                 System.out.println("End path");
+                try (FileWriter writer = new FileWriter("log.txt", true)) {
+                    writer.write("UCS"+"\n");
+                    writer.write("visited size: " +visited.size() + "\n");
+                    writer.write("path size: " + path.size() + "\n");
+                    writer.write("Execution Time: " + executionTime + " ms\n");
+                    writer.write("memoryUsed: " + memoryUsed+ " byte"+"\n");
+                    writer.write("---------------------------\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return path;
             }
             List<State> nextStates = currentState.nextState(currentState);

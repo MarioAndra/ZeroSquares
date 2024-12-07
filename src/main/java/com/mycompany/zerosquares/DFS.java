@@ -1,12 +1,14 @@
 package com.mycompany.zerosquares;
 
 import java.util.*;
-
+import java.io.FileWriter;
+import java.io.IOException;
 public class DFS {
     public List<State> search(State s) {
         Stack<State> stack = new Stack<>();
         List<State> visited = new ArrayList<>();
         stack.push(s);
+        long startTime = System.currentTimeMillis();
         //visited.add(s);
         while (!stack.isEmpty()) {
             State currentState = stack.pop();
@@ -23,6 +25,9 @@ public class DFS {
             }
             visited.add(currentState);
             if (currentState.is_goal(currentState)) {
+                long endTime = System.currentTimeMillis();
+                long executionTime = endTime - startTime;
+                int memoryUsed = (int) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
                 System.out.println("goal");
                 System.out.println("Visited size: " + visited.size());
                 List<State> path = new ArrayList<>();
@@ -39,6 +44,16 @@ public class DFS {
                 }
                 System.out.println("Path Size :"+path.size());
                 System.out.println("End path");
+                try (FileWriter writer = new FileWriter("log.txt", true)) {
+                    writer.write("DFS"+"\n");
+                    writer.write("visited size: " +visited.size() + "\n");
+                    writer.write("path size: " + path.size() + "\n");
+                    writer.write("Execution Time: " + executionTime + " ms\n");
+                    writer.write("memoryUsed: " + memoryUsed+ " byte"+"\n");
+                    writer.write("---------------------------\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return path;
             }
             List<State> nextStates = currentState.nextState(currentState);
